@@ -29,3 +29,12 @@ dist-ssr
 .env.*
 !.env.example
 *.tsbuildinfo
+
+# Local authentication database
+.data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+playwright-report/
+test-results/

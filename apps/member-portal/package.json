@@ -1,0 +1,6 @@
+{
+  "name": "memberspace-relying-party",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "cd ../.. && node --env-file=apps/member-portal/.env --import tsx apps/member-portal/dev.ts" }
+}

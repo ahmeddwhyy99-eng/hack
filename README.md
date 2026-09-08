@@ -1,10 +1,25 @@
-# EventPass — Digital Identity Verification Simulator
+# Identity service and MemberSpace
+
+The new membership authentication flow runs as two independent applications: an identity provider on port 3001 and MemberSpace on port 4000. Start with the [complete setup, database, security, and troubleshooting guide](docs/AUTHENTICATION.md).
+
+```sh
+npm install
+npm run auth:setup
+# Terminal 1
+npm run auth:dev
+# Terminal 2
+npm run portal:dev
+```
+
+Open http://localhost:4000. The original simulator below is preserved separately. Do not run its combined `npm run dev` alongside `auth:dev`, because both bind port 3001. Use `npm run demo:dev` for the optional legacy Next.js UI when the provider is running.
+
+# Original EventPass verification simulator
 
 A working demo of requesting a yes/no claim instead of a complete identity. Uses exactly three fictional identities. It demonstrates selective disclosure at the API boundary, not cryptographic selective disclosure.
 
 ## Run locally
 
-Requires Node.js 20.19+ (Node 22 recommended).
+Requires Node.js 22.13+ (Node 24 recommended).
 
 ```sh
 npm install

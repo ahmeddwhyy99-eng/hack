@@ -1,0 +1,13 @@
+import { renderToStaticMarkup } from 'react-dom/server'
+import { ShieldCheck } from 'lucide-react'
+import { Card } from '../../src/components/ui/card'
+import { Button } from '../../src/components/ui/button'
+import type { ReactNode } from 'react'
+export function page(title: string, children: ReactNode, provider = true) {
+  return '<!doctype html>' + renderToStaticMarkup(<html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>{`${title} · ${provider ? 'Identity service' : 'MemberSpace'}`}</title><link rel="stylesheet" href="/auth-style.css"/><script src="/auth-form.js" defer/></head><body><header><div className="header-inner"><a className="brand" href={provider ? '/auth' : '/'}><ShieldCheck aria-hidden="true"/>{provider ? 'Identity service' : 'MemberSpace'}</a><span className="badge">Development system</span></div></header><main className="main"><div className="page-heading"><p className="eyebrow">{provider ? 'AUTHENTICATION PROVIDER' : 'INDEPENDENT MEMBERSHIP PORTAL'}</p><h1>{title}</h1></div><Card>{children}</Card></main><footer>{provider ? 'Your credentials stay with the identity service.' : 'Only your membership claim is requested.'}<span>Use test accounts for this development deployment.</span></footer></body></html>)
+}
+export function Hidden({ csrf }: { csrf: string }) { return <input type="hidden" name="csrf" value={csrf}/> }
+export function Credentials({ mode, csrf, error }: { mode: 'login' | 'register'; csrf: string; error?: string }) {
+  return <><p>{mode === 'register' ? 'Create a test account. New accounts start with inactive membership.' : 'Sign in to review the membership information requested by MemberSpace.'}</p>{error && <p role="alert" className="alert">{error}</p>}<form method="post" action={`/auth/${mode}`}><Hidden csrf={csrf}/><label htmlFor="email">Email address</label><input id="email" name="email" type="email" autoComplete="username" maxLength={254} required/><label htmlFor="password">Password</label><input id="password" name="password" type="password" autoComplete={mode === 'register' ? 'new-password' : 'current-password'} minLength={12} maxLength={128} required aria-describedby="password-help"/><p id="password-help" className="muted">Use 12–128 characters. Do not reuse a personal password.</p><Button className="full" type="submit">{mode === 'register' ? 'Register' : 'Log in'}</Button></form><div className="auth-links"><a href={mode === 'register' ? '/auth/login' : '/auth/register'}>{mode === 'register' ? 'Already registered? Log in' : 'Create an account'}</a></div></>
+}
+export { Button }
