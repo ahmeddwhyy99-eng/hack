@@ -46,3 +46,11 @@ Live Supabase setup and deployment require your own service configuration. No cr
 - `docs/DESIGN_SYSTEM.md`: supplied authoritative design.
 
 This is an unauthenticated hackathon simulator, not real identity infrastructure. Optional expiry, history, and account features are intentionally outside the core demo.
+
+## Presentation flow
+
+The entry screen is a fictional sign-in experience: it collects no passwords, SMS codes, ID numbers, or real personal data. Select **Sign in with Digital Identity**, choose one of the three demo identities, review the sharing boundary, then continue to explicit **Approve** / **Reject** consent. **Use Omar demo** opens Omar's review screen; it never approves automatically.
+
+The four-step indicator marks the current stage. Results distinguish success, an unmet requirement, rejection, pending decisions, and service unavailability. Each includes a privacy receipt and **Start another verification**. Pending requests can return to the wallet or refresh. An unavailable service produces an unknown disclosure outcome until retry confirms the server result; it does not imply rejection. Following an ambiguous decision error, the wallet re-reads the request before allowing another submission.
+
+For explicit local memory mode, export `VERIFICATION_STORE=memory` and leave both Supabase variables unset. With both Supabase variables configured, requests persist in Supabase. The existing three fake identities remain server-defined; no demo users table is required. The service-role key is used only by the Express store, never the browser.
