@@ -98,7 +98,8 @@ npm run portal:dev
 | URL | Application |
 | --- | --- |
 | `http://localhost:4000/` | External login page — start here |
-| `http://localhost:4000/protected` | Protected membership resources |
+| `http://localhost:4000/dashboard` | Protected member dashboard shown after successful authorization |
+| `http://localhost:4000/protected` | Backward-compatible protected-route alias |
 | `http://localhost:4000/callback` | Registered callback; do not visit manually |
 | `http://localhost:3001/auth` | Identity service overview |
 | `http://localhost:3001/auth/login` | Login within a pending authorization flow |
@@ -117,12 +118,12 @@ Open `http://localhost:3000/event`. Its three fake identities and age/student/re
 
 ## 5. Register and assign membership
 
-1. Visit `http://localhost:4000/` and select **Log in with Identity service**.
+1. Visit `http://localhost:4000/` and select **Enter member dashboard**.
 2. The browser moves to port 3001. Select **Create an account**.
 3. Register `member@example.test` with a unique test password of 12–128 characters.
 4. Select **Log in** and enter the same credentials. Registration does not grant membership or silently log you in.
 5. Read the consent screen. It shares only **Active membership: Yes or No**. Choose **Approve**.
-6. The browser returns through `/callback` to `/protected`. A new user sees **Active membership required** (HTTP 403), demonstrating successful login without permission.
+6. The browser returns through `/callback` to `/dashboard`. A new user sees **Active membership required** (HTTP 403), demonstrating successful login without permission.
 7. In another terminal at the repository root, activate the account:
 
 ```sh
