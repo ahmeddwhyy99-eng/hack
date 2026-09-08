@@ -1,0 +1,48 @@
+{
+  "name": "eventpass-simulator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"next dev\" \"tsx watch server/dev.ts\"",
+    "build": "next build --webpack",
+    "start": "concurrently -k \"next start\" \"tsx server/dev.ts\"",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "express": "^5.1.0",
+    "zod": "^4.0.0",
+    "serverless-http": "^3.2.0",
+    "@supabase/supabase-js": "^2.0.0",
+    "lucide-react": "^0.468.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.0.0",
+    "@radix-ui/react-slot": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "typescript": "~6.0.2",
+    "tsx": "^4.0.0",
+    "concurrently": "^9.0.0",
+    "vitest": "^3.2.0",
+    "supertest": "^7.0.0",
+    "@types/supertest": "^6.0.0",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "eslint": "^10.9.0",
+    "@eslint/js": "^10.0.1",
+    "typescript-eslint": "^8.67.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.4",
+    "globals": "^17.11.0"
+  }
+}
